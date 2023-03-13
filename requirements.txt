@@ -1,0 +1,16 @@
+black
+grin
+ipdb
+jupyterlab
+kneed
+matplotlib
+mypy
+numpy
+pandas
+scikit-learn
+scipy
+seaborn
+sklearn
+snakeviz
+termcolor
+wikipedia
