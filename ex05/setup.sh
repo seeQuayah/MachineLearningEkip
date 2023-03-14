@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # variables
-FILE="$PWD/dataset/dataset.csv"
 LINK="https://static.openfoodfacts.org/data/en.openfoodfacts.org.products.csv"
 ANSWER="n"
 
