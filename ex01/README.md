@@ -1,6 +1,6 @@
 ## Part 1 : data distribution and the law of large numbers
 
-#### Question 1
+## Question 1
 
 We take as an example the height and weight of a population.
 We consider the real random variables X (height in cm) and Y (weight in kg) for each individual of the population.
@@ -12,14 +12,14 @@ Z = (X, Y) represents the height and weight of an individual in the population.
 Z is equal to the means of X and Y, so E[Z] = (E[X], E[Y]) = (170, 70).
 
 
-#### Question 2
+## Question 2
 
 We sample n = 1000 points of the law of Z and represent them in a 2-dimensional figure:
 
 ![Distribution for Height and Weight for sample n = 1000](https://cdn.discordapp.com/attachments/496721203176800287/1081215098711986258/ex01_02.png)
 
 
-#### Question 3
+## Question 3
 
 We now compute the empirical mean of the first n samples as a function of the number of samples n, and check that it converges to the expected value.
 
