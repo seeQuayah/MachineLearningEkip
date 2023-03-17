@@ -11,28 +11,14 @@ You can use **setup.sh** to download the dataset in csv (about 7.4Gb)
 
 ### Analysis
 
-
-```python
-import pandas as pd
-import matplotlib.pyplot as plt
-
-dataframe = pd.read_csv('dataset/dataset.csv', sep='\t', low_memory=False, nrows=10000)
-
-quant_vars = ['energy_100g', 'fat_100g', 'saturated-fat_100g', 'carbohydrates_100g', 'sugars_100g', 'proteins_100g', 'salt_100g', 'sodium_100g', 'nutrition-score-fr_100g']
-
-dataframe = dataframe.dropna(subset=quant_vars)
-dataframe[quant_vars].hist(bins=50, figsize=(15, 10))
-
-plt.show()
-```
-
 Since we have a very huge dataset, we take a sample of 10000 products.
 
-We get this historigram for the quantitative variables.
+We make a first selection of quantitatives variables and start to make some historigram in order to visualise what's is going on with this dataset.
 
 ![historigram](https://cdn.discordapp.com/attachments/579658084595662848/1085230268178235523/Capture_decran_2023-03-14_a_16.57.33.png)
 
-We, however decided to change a column for our analysis.
+This first analysis show us many thing:
+- 
 We want to keep on macronutriments data and the nutrition-score-fr_100g is already an analized data.
 We also updated our code to get more result and swapped energy_100g to energy-kcal_100g to get more readable results.
 
@@ -46,38 +32,6 @@ The histograms of sodium_100g  show that the distribution of values is also righ
 
 We also see that salt_100g is a 1 to 1 copy of sodium_100g so we decided to cut it out of our future analysis.
 
-```python
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Load the dataset
-df = pd.read_csv('dataset/dataset.csv', sep='\t', low_memory=False, nrows=10000)
-quant_vars = ['energy-kcal_100g', 'fat_100g', 'saturated-fat_100g', 'carbohydrates_100g', 'sugars_100g', 'proteins_100g', 'sodium_100g']
-# Remove rows with missing values for the variables of interest
-df = df.dropna(subset=quant_vars)
-
-# Histograms of the quantitative variables
-df[quant_vars].hist(bins=50, figsize=(20,15))
-plt.show()
-
-# Summary statistics of the quantitative variables
-print(df[quant_vars].describe())
-
-# Boxplot of quantitative variables
-sns.boxplot(data=df[quant_vars], orient="v", palette="Set2")
-plt.show()
-
-corr_matrix = df[quant_vars].corr()
-sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
-plt.show()
-
-
-cat_vars = ['pnns_groups_1', 'pnns_groups_2']
-for var in cat_vars:
-    print(df[var].value_counts())
-```
 Using the generated Boxplot we can identify some outliers.
 
 ![Boxplot](https://cdn.discordapp.com/attachments/579658084595662848/1085523080002142259/image.png)
