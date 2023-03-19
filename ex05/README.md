@@ -1,11 +1,3 @@
-```
-# TODO 
-
-- explique scaling
-
-- un graph
-```
-
 
 # Part 5 : application of unsupervised learning
 
@@ -34,7 +26,7 @@ We make a first selection of quantitatives variables that are macronutriment and
 
 And there is the result:
 
-![historigram](https://cdn.discordapp.com/attachments/579658084595662848/1086649164772933732/image.png)
+![historigram](https://cdn.discordapp.com/attachments/579658084595662848/1087075254813331536/Figure_1.png)
 
 This first analysis show us many thing:
 - We see that there is a link between the salt and the sodium as the have the same historigram. We decide to remove the salt for further study of the dataset.
@@ -51,7 +43,7 @@ Here is the result:
 
 We see that there are a few extreme outliers in the sample, particularly for the energy-kcal_100g and sodium_100g variables.
 
-In order to get rid we need to find wich z-score is the best for each variable.
+In order to get rid of these we will use IQR 
 
 After some try here is the result:
 
@@ -66,14 +58,8 @@ We can now make a new boxplot int order to see if the result is better.
 
 As we can see, we have know better data, we can make better historigram and perform further analysis.
   
-  ```
-# TODO 
-
-- MAKE THE CORRECT GRAPH HERE
-
-```
   
-![](https://cdn.discordapp.com/attachments/355995341205798914/1085621980230864916/Figure_1.png)
+![](https://cdn.discordapp.com/attachments/579658084595662848/1087075765759246478/Figure_1.png)
 
 
 
@@ -114,6 +100,9 @@ We can also see another correlation between carbohydrates and sugar.
 Those might be 2 possible clusters but more might still be hidden to us.
 
 #### WCSS
+
+At this step, we need to **scale** the data in order to use correctly the k-means algorithm.
+
 
 ![hello](https://cdn.discordapp.com/attachments/579658084595662848/1086649424840753263/image.png)
 
