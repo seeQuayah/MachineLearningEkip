@@ -1,4 +1,4 @@
-`import numpy as np
+import numpy as np
 from sklearn.cluster import KMeans, AgglomerativeClustering
 from sklearn.preprocessing import MinMaxScaler
 from scipy.spatial.distance import cdist
@@ -72,4 +72,3 @@ kmeans = KMeans(n_clusters=6)
 kmeans.fit(data)
 plt.scatter(data[:, 0], data[:, 1], c=kmeans.labels_, cmap='rainbow')
 plt.show()
-`
