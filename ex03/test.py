@@ -11,13 +11,13 @@ data = np.load('data.npy')
 
 def kmeans_euclidian_inertia():
     inertias = []
-    for k in range(1, 11):
-        kmeans = KMeans(n_clusters=k)
-        kmeans.fit(data)
-        inertias.append(kmeans.inertia_)
-    return inertias
+    kmeans = KMeans()
+    results = KElbowVisualizer(kmeans, k=(1,12))
+    results.fit(data)
+    results.show()
 
-inertias = kmeans_euclidian_inertia()
+
+kmeans_euclidian_inertia()
 
 def kmeans_euclidian_sil_scores():
     sil_scores = []
@@ -35,7 +35,7 @@ data_scaled = scaler.fit_transform(data)
 def elbow_agglo():
     agglo = AgglomerativeClustering(metric='manhattan', linkage='average')
     agglo.fit(data_scaled)
-    results = KElbowVisualizer(agglo, k=(2,12))
+    results = KElbowVisualizer(agglo, k=(1,12))
     results.fit(data)
     results.show()
 
@@ -50,28 +50,19 @@ for i in range(2, 11):
 
 figure, axis = plt.subplots(2, 2, figsize=(10, 10))
 
-# K-Means clustering avec distance euclidienne et méthode du coude
-axis[0, 0].plot(range(1, 11), inertias)
-axis[0, 0].set_title('Méthode du coude (K Means)')
-axis[0, 0].set_xlabel('Nombre de clusters')
-axis[0, 0].set_ylabel('Inertie')
 
 # K Means  avec distance euclidienne et méthode du coeff de silhouette
-axis[0, 1].plot(range(2, 11), sil_scores)
-axis[0, 1].set_title('Méthode du coefficient de silhouette (K means)')
+axis[0, 0].plot(range(2, 11), sil_scores)
+axis[0, 0].set_title('Méthode du coefficient de silhouette (K means)')
+axis[0, 0].set_xlabel('Nombre de clusters')
+axis[0, 0].set_ylabel('Score de silhouette')
+
+
+
+# AgglomerativeClustering with silhouette score
+axis[0, 1].plot(range(2, 11), silhou)
+axis[0, 1].set_title('Méthode du coefficient de silhouette (Agglomerative clustering)')
 axis[0, 1].set_xlabel('Nombre de clusters')
 axis[0, 1].set_ylabel('Score de silhouette')
-
-# AgglomerativeClustering with Calinski-Harabasz index
-axis[1, 0].plot(range(2, 11), calinski_scores)
-axis[1, 0].set_title('Calinski-Harabasz (Agglomerative clustering)')
-axis[1, 0].set_xlabel('Nombre de clusters')
-axis[1, 0].set_ylabel('Score de Calinski-Harabasz')
-
-# AgglomerativeClustering with Davies-Bouldin index
-axis[1, 1].plot(range(2, 11), silhou)
-axis[1, 1].set_title('silouhette (Agglomerative clustering)')
-axis[1, 1].set_xlabel('Nombre de clusters')
-axis[1, 1].set_ylabel('Score')
 
 plt.show()
